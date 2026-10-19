@@ -28,4 +28,4 @@ All game logic lives in a single file, `game.js`, loaded by `index.html` (which 
 
 ## Note on README vs. code
 
-The README mentions power-ups and special asteroid types (e.g. a "shooting star"); these are **not** implemented in `game.js` yet.
+The README mentions power-ups and special asteroid types (e.g. a "shooting star"). Only the **triple-shot** power-up is implemented (`PowerUp` class, `tripleTimer`, `powerUpSpawned` — drops exactly once per level when an asteroid is destroyed — randomly with `POWERUP_CHANCE`, or forced once ≤2 asteroids remain; `nextLevel()` resets `powerUpSpawned`, lasts `TRIPLE_DURATION` seconds). The **Nova Bomb** is a second `PowerUp` type (`type: 'nova'`): rare drop (`NOVA_CHANCE`, at most once per level via `novaSpawned`, only while `novaBombs === 0`), stored as one charge in `novaBombs`, fired with `pressed('KeyB')` → `detonateNova()` destroys every asteroid without splitting (awarding points), which immediately triggers `nextLevel()`. The rest are not implemented yet.
